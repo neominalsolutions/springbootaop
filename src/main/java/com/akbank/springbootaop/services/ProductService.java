@@ -9,7 +9,7 @@ import com.akbank.springbootaop.models.Product;
 public class ProductService {
 
   @Log // çağıracağımız aspect için anotasyonu yazdık
-  public Product saveProduct(String name, String description) {
+  public void saveProduct(String name, String description) {
 
     // AfterThrowing'i çalıştırdık
     // throw new Error("Hata");
@@ -19,7 +19,6 @@ public class ProductService {
     var p = new Product();
     p.Name = "ProductName";
 
-    return p;
   }
 
 }

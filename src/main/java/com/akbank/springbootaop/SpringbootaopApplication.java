@@ -21,9 +21,7 @@ public class SpringbootaopApplication {
 
 		var productService = ctx.getBean(ProductService.class);
 
-		Product product = productService.saveProduct("product-1", "ürün ekleme");
-
-		System.out.println(product);
+		productService.saveProduct("product-1", "ürün ekleme");
 
 		// productService.saveProduct("product-1", "ürün ekleme");
 

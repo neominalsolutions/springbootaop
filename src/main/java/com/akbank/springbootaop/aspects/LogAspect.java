@@ -19,7 +19,7 @@ public class LogAspect {
 
   // @Before(value = "execution(* com.akbank.springbootaop..*(..))") // methoda
   // girmeden önce buradaki kod blogu tetiklenir
-  @Before(value = "@annotation(Log)")
+  // @Before(value = "@annotation(Log)")
   public void logBefore(JoinPoint joinPoint) {
     System.out.println(Arrays.toString(joinPoint.getArgs()));
   }
@@ -38,7 +38,7 @@ public class LogAspect {
   // @After("execution(* com.akbank.springbootaop.services.*.*(..))")
   // genel kullanım projede referansı bulunan herhangi bir anotasyon isminden
   // bu çağırma işlemine pointcut ismi veriyoruz
-  @After(value = "@annotation(Log))")
+  // @After(value = "@annotation(Log))")
   public void logAfter(JoinPoint joinPoint) {
     System.out.println("After Log" + Arrays.toString(joinPoint.getArgs()));
     // System.out.println(String.format("name=%s desc=%s", name, description));
@@ -51,8 +51,8 @@ public class LogAspect {
   // joinPoint ilk olarak before işlemindeki pointler verir null gelir
   // after kısmında işlenirken after sürecisinde değikenin değişen kısımlarını
   // almalıyız.
-  @Around(value = "@annotation(Log)")
-  public String logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+  @Around(value = "@annotation(Log) && args(name,description)")
+  public void logAround(ProceedingJoinPoint joinPoint, String name, String description) throws Throwable {
     // kod blogunda hata olabilme durumu düşünülerek thowable olarak yazılmıştır
 
     // Before kısmı
@@ -60,7 +60,18 @@ public class LogAspect {
 
     try {
 
-      Object result = joinPoint.proceed(); // bu kod blogundan sonra after geçer.
+      System.out.println("name" + name);
+      System.out.println("description" + description);
+
+      Object[] args = joinPoint.getArgs();
+
+      name = "name2";
+      description = "desc2";
+
+      args[0] = name;
+      args[1] = description;
+
+      Object result = joinPoint.proceed(args); // bu kod blogundan sonra after geçer.
       // result göre logma
       // methodun dönüş tipine göre joinPoint.proceed() ile sonucu yakalyıp loglamak
       // response görüntüledik.
@@ -72,19 +83,18 @@ public class LogAspect {
       // TODO: handle exception
     }
 
-    return "AfterAround";
   }
 
   // bir exception hata oluştuğu durumda devreye girer.
   // afterthrowing after öncesinde method içerisinde bir hata olduğu durumda
   // çalıştı
   // PointCut işlemi => value = "@annotation(Log)"
-  @AfterThrowing(value = "@annotation(Log)")
+  // @AfterThrowing(value = "@annotation(Log)")
   public void AfterThrowing(JoinPoint joinPoint) {
     System.out.println("AfterThrowing");
   }
 
-  @AfterReturning(value = "@annotation(Log)")
+  // @AfterReturning(value = "@annotation(Log)")
   public void AfterReturning(JoinPoint joinPoint) {
     System.out.println("AfterReturning");
   }
