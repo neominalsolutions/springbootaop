@@ -19,7 +19,7 @@ public class LogAspect {
 
   // @Before(value = "execution(* com.akbank.springbootaop..*(..))") // methoda
   // girmeden önce buradaki kod blogu tetiklenir
-  // @Before(value = "@annotation(Log)")
+  @Before(value = "@annotation(Log)")
   public void logBefore(JoinPoint joinPoint) {
     System.out.println(Arrays.toString(joinPoint.getArgs()));
   }
@@ -38,7 +38,7 @@ public class LogAspect {
   // @After("execution(* com.akbank.springbootaop.services.*.*(..))")
   // genel kullanım projede referansı bulunan herhangi bir anotasyon isminden
   // bu çağırma işlemine pointcut ismi veriyoruz
-  // @After(value = "@annotation(Log))")
+  @After(value = "@annotation(Log))")
   public void logAfter(JoinPoint joinPoint) {
     System.out.println("After Log" + Arrays.toString(joinPoint.getArgs()));
     // System.out.println(String.format("name=%s desc=%s", name, description));
@@ -93,12 +93,12 @@ public class LogAspect {
   // afterthrowing after öncesinde method içerisinde bir hata olduğu durumda
   // çalıştı
   // PointCut işlemi => value = "@annotation(Log)"
-  // @AfterThrowing(value = "@annotation(Log)")
+  @AfterThrowing(value = "@annotation(Log)")
   public void AfterThrowing(JoinPoint joinPoint) {
     System.out.println("AfterThrowing");
   }
 
-  // @AfterReturning(value = "@annotation(Log)")
+  @AfterReturning(value = "@annotation(Log)")
   public void AfterReturning(JoinPoint joinPoint) {
     System.out.println("AfterReturning");
   }
