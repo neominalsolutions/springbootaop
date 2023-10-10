@@ -38,9 +38,11 @@ public class LogAspect {
   // @After("execution(* com.akbank.springbootaop.services.*.*(..))")
   // genel kullanım projede referansı bulunan herhangi bir anotasyon isminden
   // bu çağırma işlemine pointcut ismi veriyoruz
-  @After(value = "@annotation(Log)")
+  @After(value = "@annotation(Log))")
   public void logAfter(JoinPoint joinPoint) {
     System.out.println("After Log" + Arrays.toString(joinPoint.getArgs()));
+    // System.out.println(String.format("name=%s desc=%s", name, description));
+
   }
 
   // Öncesinde girdim

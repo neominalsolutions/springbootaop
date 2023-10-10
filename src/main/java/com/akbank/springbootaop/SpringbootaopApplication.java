@@ -1,10 +1,10 @@
 package com.akbank.springbootaop;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
+import com.akbank.springbootaop.models.Product;
 import com.akbank.springbootaop.services.ProductService;
 
 // EnableAspectJAutoProxy aspect olarak işaretlenmiş sınıfların tetiklenmesini sağladık
@@ -21,12 +21,9 @@ public class SpringbootaopApplication {
 
 		var productService = ctx.getBean(ProductService.class);
 
-	
+		Product product = productService.saveProduct("product-1", "ürün ekleme");
 
-		var p = new ProductService();
-		var result = productService.saveProduct("product-1", "ürün ekleme", 20);
-
-		System.out.println(result);
+		System.out.println(product);
 
 		// productService.saveProduct("product-1", "ürün ekleme");
 

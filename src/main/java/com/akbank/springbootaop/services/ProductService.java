@@ -9,13 +9,12 @@ import com.akbank.springbootaop.models.Product;
 public class ProductService {
 
   @Log // çağıracağımız aspect için anotasyonu yazdık
-  public Product saveProduct(String name, String description, int number) {
+  public Product saveProduct(String name, String description) {
 
     // AfterThrowing'i çalıştırdık
     // throw new Error("Hata");
     name = "can";
     description = "canan";
-    number = 10;
     System.out.println("save product işlemi");
     var p = new Product();
     p.Name = "ProductName";
