@@ -56,7 +56,7 @@ public class LogAspect {
     // kod blogunda hata olabilme durumu düşünülerek thowable olarak yazılmıştır
 
     // Before kısmı
-    System.out.println("Around1" + Arrays.toString(joinPoint.getArgs()));
+    System.out.println("Around Before" + Arrays.toString(joinPoint.getArgs()));
 
     try {
 
@@ -65,11 +65,15 @@ public class LogAspect {
 
       Object[] args = joinPoint.getArgs();
 
-      name = "name2";
-      description = "desc2";
+      // argüman değerlerini aspect üzerinden değiştirdik
+      // bunu sadece around aspecte yapabiliyoruz.
+      name = " name2 ";
+      description = " desc2 ";
 
       args[0] = name;
       args[1] = description;
+
+      // args değerlerini değiştirdik.
 
       Object result = joinPoint.proceed(args); // bu kod blogundan sonra after geçer.
       // result göre logma
@@ -77,7 +81,7 @@ public class LogAspect {
       // response görüntüledik.
 
       // After kısmı
-      System.out.println("Around2" + Arrays.toString(joinPoint.getArgs()));
+      System.out.println("Around After" + Arrays.toString(joinPoint.getArgs()));
 
     } catch (Exception e) {
       // TODO: handle exception

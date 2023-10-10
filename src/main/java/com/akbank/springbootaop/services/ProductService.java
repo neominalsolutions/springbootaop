@@ -13,9 +13,9 @@ public class ProductService {
 
     // AfterThrowing'i çalıştırdık
     // throw new Error("Hata");
-    name = "can";
-    description = "canan";
-    System.out.println("save product işlemi");
+
+    System.out.println("save product işlemi" + name);
+    System.out.println("save product işlemi" + description);
     var p = new Product();
     p.Name = "ProductName";
 
